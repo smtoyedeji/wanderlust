@@ -1,14 +1,16 @@
+require('dotenv').config()
 const express = require('express')
+const multer = require('multer')
+const upload = multer({ dest: '/uploads'})
 const app = express()
 const wanderlust = require('./routes/wanderlust')
-require('dotenv').config()
 const connectDB = require('./db/connectDB')
+// const notFound = require('./middleware/notFound')
 
 
 
 // middleware
 app.use(express.json())
-
 
 app.get('/', (req, res) => {
     res.send("Helloooooooooooooooooo")
@@ -16,6 +18,17 @@ app.get('/', (req, res) => {
 
 // routes
 app.use('/api/v1/wanderlust', wanderlust)
+// app.use(notFound)
+
+
+app.post('/place', upload.single('place'), function (req, res, next) {
+    // req.file is the `avatar` file
+    // console.log(req.file)
+    // req.body will hold the text fields, if there were any
+    console.log(req.body)
+    res.send(req.file)
+})
+
 
 const port = 8000
 

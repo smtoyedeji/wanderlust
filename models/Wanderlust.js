@@ -17,7 +17,8 @@ const WanderlustSchema = new mongoose.Schema({
         type: String,
         required: [true, 'write your holiday experience'],
         maxlength: [500, 'experience cannot be more than 500 characers']
-    }
+    },
 })
 
-module.exports = mongoose.model('Wanderlust', WanderlustSchema)
+const Wanderlust = mongoose.model('Wanderlust', WanderlustSchema)
+module.exports = Wanderlust
