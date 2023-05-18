@@ -71,6 +71,9 @@ const updatePost = async (req, res) => {
     }
 }
 
+const posthello = (req, res) => {
+    res.send("yes")
+}
 
 
 
