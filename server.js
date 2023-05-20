@@ -30,7 +30,8 @@ app.post('/place', upload.single('place'), function (req, res, next) {
 })
 
 
-const port = 8000
+const port = process.env.PORT || 8000
+
 
 
 const start = async () => {
