@@ -2,13 +2,13 @@ const mongoose = require('mongoose')
 
 // set up the structure of all documents in db collection with Schema
 const WanderlustSchema = new mongoose.Schema({
-    name: {
+    place: {
         type: String,
         required: [true, 'must provide name'], // validation to ensure the value is provided. Check mongoose docs
         trim: true, // remove whitespaces from name
         maxlength: [20, 'name cannot be more than 20 characters'] // length of characters for name
     },
-    title: {
+    topic: {
         type: String,
         required: [true, 'must provide title of article'],
         maxlength: [50, 'title cannot be more than 50 characters'] 
