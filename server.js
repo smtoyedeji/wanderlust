@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express')
+const cors = require('cors')
 const multer = require('multer')
 const upload = multer({ dest: '/uploads'})
 const app = express()
@@ -11,6 +12,7 @@ const connectDB = require('./db/connectDB')
 
 // middleware
 app.use(express.json())
+app.use(cors())
 
 app.get('/', (req, res) => {
     res.send("Helloooooooooooooooooo")
