@@ -10,15 +10,35 @@ const allPosts = async (req, res) => {
 }
 
 
-const writePost = async (req, res) => {
+const createPost = async (req, res) => {
     try {
-        const wanderlust = await Wanderlust.create(req.body)
-        res.status(201).json({ success: true, wanderlust })
-
-    } catch (err) {
-        res.status(500).json({ msg: err.message })
+      const { place, topic, experience, name, image, size, mimetype } = req.body;
+  
+      if (!place || !topic || !experience || !name || !image || !size || !mimetype) {
+        return res.status(400).json({ error: 'Please provide all required fields.' });
+      }
+  
+      const newDocument = new Wanderlust({
+        place,
+        topic,
+        experience,
+        name,
+        image,
+        size,
+        mimetype,
+      });
+  
+      const savedDocument = await newDocument.save();
+  
+      res.status(201).json({ success: true, newDocument: savedDocument });
+    } catch (error) {
+      res.status(500).json({ error: `Failed to create post: ${error.message}` });
     }
-}
+};
+
+ 
+  
+
 
 const aPost = async (req, res) => {
     try {     
@@ -71,16 +91,14 @@ const updatePost = async (req, res) => {
     }
 }
 
-const posthello = (req, res) => {
-    res.send("yes")
-}
+
 
 
 
 module.exports = {
+    createPost,
     allPosts,
-    writePost,
     aPost,
-    deletePost, 
-    updatePost,
+    deletePost,
+    updatePost
 }
