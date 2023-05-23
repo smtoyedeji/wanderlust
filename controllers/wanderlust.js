@@ -66,7 +66,9 @@ const deletePost = async (req, res) => {
         if(!wanderlust) {
             return res.status(404).json({msg: 'no wanderlust with id :' + wanderlustID })
         }
-        res.status(200).json({ status: `post with id of ${wanderlustID} successfully deleted` })
+        // res.status(200).json({ status: `post with id of ${wanderlustID} successfully deleted` })
+        res.redirect('/')
+
     } catch (err) {
         res.status(500).json({ msg: err })
     }
