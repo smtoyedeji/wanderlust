@@ -16,7 +16,7 @@ const firstSchema = new mongoose.Schema({
   experience: {
     type: String,
     required: [true, 'write your holiday experience'],
-    maxlength: [500, 'experience cannot be more than 500 characters'],
+    maxlength: [3000, 'experience cannot be more than 500 characters'],
   },
 });
 

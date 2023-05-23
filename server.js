@@ -23,14 +23,6 @@ app.use('/api/v1/wanderlust', wanderlust)
 // app.use(notFound)
 
 
-app.post('/place', upload.single('place'), function (req, res, next) {
-    // req.file is the `avatar` file
-    // console.log(req.file)
-    // req.body will hold the text fields, if there were any
-    console.log(req.body)
-    res.send(req.file)
-})
-
 
 const port = process.env.PORT || 8000
 
