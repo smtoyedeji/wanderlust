@@ -22,26 +22,14 @@ const firstSchema = new mongoose.Schema({
 
 // image upload schema
 const secondSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  image: {
+  data: {
     type: Buffer,
-    required: true,
+    required: true
   },
-  size: {
-    type: Number,
-    required: true,
-  },
-  mimetype: {
+  contentType: {
     type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+    required: true
+  }
 });
 
 // combined schema for first and second schema
@@ -49,11 +37,10 @@ const WanderlustSchema = new mongoose.Schema({
   place: firstSchema.path('place'),
   topic: firstSchema.path('topic'),
   experience: firstSchema.path('experience'),
-  name: secondSchema.path('name'),
-  image: secondSchema.path('image'),
-  size: secondSchema.path('size'),
-  mimetype: secondSchema.path('mimetype'),
-  createdAt: secondSchema.path('createdAt'),
+  image: {
+    data: secondSchema.path('data'),
+    contentType: secondSchema.path('contentType'),
+  }
 });
 
 

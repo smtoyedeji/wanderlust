@@ -12,9 +12,10 @@ const allPosts = async (req, res) => {
 
 const createPost = async (req, res) => {
     try {
-      const { place, topic, experience, name, image, size, mimetype } = req.body;
+      const { place, topic, experience } = req.body;
+      const { buffer, mimetype } = req.file;
   
-      if (!place || !topic || !experience || !name || !image || !size || !mimetype) {
+      if (!place || !topic || !experience || !buffer || !mimetype) {
         return res.status(400).json({ error: 'Please provide all required fields.' });
       }
   
@@ -22,10 +23,10 @@ const createPost = async (req, res) => {
         place,
         topic,
         experience,
-        name,
-        image,
-        size,
-        mimetype,
+        image: {
+          data: buffer,
+          contentType: mimetype
+        }
       });
   
       const savedDocument = await newDocument.save();
@@ -34,10 +35,7 @@ const createPost = async (req, res) => {
     } catch (error) {
       res.status(500).json({ error: `Failed to create post: ${error.message}` });
     }
-};
-
- 
-  
+}; 
 
 
 const aPost = async (req, res) => {
